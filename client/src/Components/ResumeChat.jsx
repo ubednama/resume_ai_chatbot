@@ -13,6 +13,10 @@ export default function ResumeChatApp() {
   const [analysisResult, setAnalysisResult] = useState(null);
   const scrollAreaRef = useRef(null);
 
+  const BASE_URL = "https://ai-chatbot-tiyp.onrender.com";
+
+//   const BASE_URL = "http://localhost:5000";
+
   useEffect(() => {
     if (scrollAreaRef.current) {
       scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
@@ -26,8 +30,7 @@ export default function ResumeChatApp() {
     formData.append("file", uploadedFile);
 
     const response = await axios.post(
-      "http://localhost:5000/upload",
-      formData,
+    `${BASE_URL}/upload`, formData,
       {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -53,7 +56,7 @@ export default function ResumeChatApp() {
       setInput("");
 
       try {
-        const response = await axios.post("http://localhost:5000/analyze", {
+        const response = await axios.post(`${BASE_URL}/analyze`, {
           text: input,
           analysis_result: analysisResult,
         });

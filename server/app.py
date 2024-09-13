@@ -7,7 +7,10 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
+CORS(app, resources={r"/*": {"origins": 
+                            #  "http://localhost:5173"
+                            "https://ai-chatbot-three-mu.vercel.app"
+                             }})
 
 load_dotenv()
 
