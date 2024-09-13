@@ -141,9 +141,9 @@ export default function ResumeChatApp() {
                   />
                   <button
                     onClick={handleSendMessage}
-                    className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                    className="py-2 px-3  text-black rounded-md hover:bg-gray-300 transition-colors"
                   >
-                    <SendIcon className="h-5 w-5" />
+                    <SendIcon className="size-5" />
                   </button>
                 </div>
               </div>
