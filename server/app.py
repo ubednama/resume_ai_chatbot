@@ -7,7 +7,10 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://ai-chatbot-three-mu.vercel.app"}})
+CORS(app, resources={r"/*": {"origins": 
+                            #  "http://localhost:5173"
+                            "https://ai-chatbot-three-mu.vercel.app"
+                             }})
 
 load_dotenv()
 
@@ -20,7 +23,7 @@ class LLMService:
         self.apiKey = os.getenv('OPENAI_API_KEY')
         self.llm = ChatOpenAI(temperature=0)
         self.prompt = ChatPromptTemplate.from_messages([
-            ("system",
+            ("system", 
             "You are an expert assistant specialized in analyzing and summarizing resumes. "
             "Your task is to extract detailed personal information, educational background, "
             "professional experience, skills, and any other relevant information from the resume. "
@@ -78,7 +81,7 @@ def upload_file():
 def analyze_message():
     if request.method == 'OPTIONS':
         return '', 204
-
+    
     data = request.get_json()
     user_message = data.get('text')
     analysis_result = data.get('analysis_result')
