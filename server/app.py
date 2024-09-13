@@ -67,10 +67,8 @@ def upload_file():
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
         file.save(file_path)
 
-        # Extract text from PDF
         pdf_text = llm_service.pdf_to_text(file_path)
 
-        # Analyze the text using LLMService
         analysis_result = llm_service.analyze_text(pdf_text)
 
         return jsonify({'message': 'File uploaded and analyzed successfully', 'analysis_result': analysis_result, 'pdf_text': pdf_text}), 200
@@ -86,7 +84,6 @@ def analyze_message():
     user_message = data.get('text')
     analysis_result = data.get('analysis_result')
 
-    # Your existing code to process the message
     response = llm_service.analyze_text(f"{analysis_result}\n{user_message}")
 
     return jsonify({'message': response})
